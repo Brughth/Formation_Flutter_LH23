@@ -107,7 +107,7 @@ class FaceBookHomeScreen extends StatelessWidget {
                       ),
                     ],
                   ),
-                  SizedBox(width: 15),
+                  const SizedBox(width: 15),
                   Expanded(
                     child: Container(
                       decoration: BoxDecoration(
@@ -139,7 +139,188 @@ class FaceBookHomeScreen extends StatelessWidget {
                 ],
               ),
             ),
-          )
+          ),
+          const SizedBox(height: 10),
+          Container(
+            height: 7,
+            // width: double.infinity,
+            width: MediaQuery.of(context).size.width,
+            color: Colors.grey,
+          ),
+          const SizedBox(height: 10),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * 0.25,
+            child: ListView(
+              scrollDirection: Axis.horizontal,
+              children: [
+                const SizedBox(
+                  width: 10,
+                ),
+                Stack(
+                  alignment: Alignment.center,
+                  children: [
+                    Container(
+                      width: MediaQuery.of(context).size.width * .32,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Column(
+                        children: [
+                          Expanded(
+                            flex: 4,
+                            child: Container(
+                              decoration: const BoxDecoration(
+                                borderRadius: BorderRadius.only(
+                                  topLeft: Radius.circular(10),
+                                  topRight: Radius.circular(10),
+                                ),
+                                color: Colors.green,
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            flex: 3,
+                            child: Container(
+                              decoration: const BoxDecoration(
+                                borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(10),
+                                  bottomRight: Radius.circular(10),
+                                ),
+                                color: Colors.black,
+                              ),
+                              child: Center(
+                                child: Text(
+                                  "Ajouter a la story",
+                                  textAlign: TextAlign.center,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .titleLarge
+                                      ?.copyWith(
+                                        color: Colors.white,
+                                      ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Positioned(
+                      bottom: 70,
+                      child: Container(
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.purple,
+                          border: Border.all(
+                            color: Colors.black,
+                            width: 3,
+                          ),
+                        ),
+                        child: const Padding(
+                          padding: EdgeInsets.all(8.0),
+                          child: Icon(Icons.add),
+                        ),
+                      ),
+                    )
+                  ],
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                ...[1, 2, 3, 4, 5, 6].map((e) {
+                  return Container(
+                    width: MediaQuery.of(context).size.width * .32,
+                    margin: const EdgeInsets.only(right: 10),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10),
+                      color: Colors.primaries[e],
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            decoration: BoxDecoration(
+                              color: Colors.primaries[e + 2],
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 10,
+                                horizontal: 10,
+                              ),
+                              child: Text(
+                                "${e}",
+                                style: const TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                            ),
+                          ),
+                          const Text(
+                            'Ornela Mary',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 16,
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
+                  );
+                })
+              ],
+            ),
+          ),
+          const SizedBox(height: 10),
+          Container(
+            height: 7,
+            // width: double.infinity,
+            width: MediaQuery.of(context).size.width,
+            color: Colors.grey,
+          ),
+          ...List.generate(5, (index) {
+            return Padding(
+              padding: const EdgeInsets.symmetric(
+                horizontal: 10,
+                vertical: 10,
+              ),
+              child: Column(
+                children: [
+                  ListTile(
+                    contentPadding: EdgeInsets.zero,
+                    leading: Container(
+                      width: 50,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        color: Colors.primaries[index],
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          color: Colors.green,
+                          width: 3,
+                        ),
+                      ),
+                    ),
+                    title: const Text("Olice SONA FC"),
+                    subtitle: const Text("23h - 😎"),
+                    trailing: const Icon(Icons.close),
+                  ),
+                  Text(
+                    "Apprendre un petit peu chaque jour est une méthode efficace. Des études ont montré que les participants qui ont établi une routine d'apprentissage sont plus susceptibles d'atteindre leurs objectifs. ",
+                  ),
+                  Container(
+                    height: 250,
+                    width: double.infinity,
+                    color: Colors.primaries[index],
+                  )
+                ],
+              ),
+            );
+          })
         ],
       ),
     );
