@@ -1,5 +1,6 @@
 import 'package:demo/pages/counter_screen.dart';
 import 'package:demo/pages/facebook_home_screen.dart';
+import 'package:demo/whatsapp/presentation/pages/whatsapp_home_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'pages/bmi_calculator.dart';
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: const BmiCalculatorScreen(),
+      home: const WhatsAppHomeScreen(),
     );
   }
 }
