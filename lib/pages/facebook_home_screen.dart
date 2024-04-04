@@ -1,12 +1,23 @@
 import 'package:demo/widgets/custom_icon_widget.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 import '../widgets/custom_badge_icon_widget.dart';
 
-class FaceBookHomeScreen extends StatelessWidget {
+class FaceBookHomeScreen extends StatefulWidget {
   const FaceBookHomeScreen({super.key});
+
+  @override
+  State<FaceBookHomeScreen> createState() => _FaceBookHomeScreenState();
+}
+
+class _FaceBookHomeScreenState extends State<FaceBookHomeScreen> {
+  late ScrollController _scrollController;
+
+  @override
+  void initState() {
+    _scrollController = ScrollController();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +44,7 @@ class FaceBookHomeScreen extends StatelessWidget {
         ],
       ),
       body: ListView(
+        controller: _scrollController,
         children: [
           const Padding(
             padding: EdgeInsets.symmetric(
@@ -283,7 +295,7 @@ class FaceBookHomeScreen extends StatelessWidget {
             width: MediaQuery.of(context).size.width,
             color: Colors.grey,
           ),
-          ...List.generate(5, (index) {
+          ...List.generate(3, (index) {
             return Padding(
               padding: const EdgeInsets.symmetric(
                 horizontal: 10,
@@ -320,7 +332,17 @@ class FaceBookHomeScreen extends StatelessWidget {
                 ],
               ),
             );
-          })
+          }),
+          IconButton(
+            onPressed: () {
+              _scrollController.animateTo(
+                0,
+                duration: const Duration(milliseconds: 500),
+                curve: Curves.ease,
+              );
+            },
+            icon: const Icon(Icons.upgrade),
+          )
         ],
       ),
     );

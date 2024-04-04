@@ -19,6 +19,10 @@ class _WhatsAppHomeScreenState extends State<WhatsAppHomeScreen>
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    bool isMobile = width < 800;
+    bool isTablet = width >= 800 && width < 1100;
+    bool isDesktop = width >= 1100;
     return Scaffold(
       appBar: AppBar(
         title: const Text(
@@ -44,29 +48,78 @@ class _WhatsAppHomeScreenState extends State<WhatsAppHomeScreen>
       body: TabBarView(
         controller: tabController,
         children: [
-          Container(
-              child: const Center(
-                  child: Text(
-            "Desc.",
-            style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
-          ))),
-          Container(
-              child: GestureDetector(
-            onTap: () {
-              tabController.animateTo(2);
+          ListView.builder(
+            itemCount: 50,
+            itemBuilder: (context, index) {
+              // if (index == 5) {
+              //   return Row(
+              //     children: [
+              //       CircleAvatar(
+              //         radius: 50,
+              //         backgroundColor: Colors.pink,
+              //       ),
+              //       CircleAvatar(
+              //         radius: 50,
+              //         backgroundColor: Colors.pink,
+              //       ),
+              //     ],
+              //   );
+              // }
+              return Column(
+                children: [
+                  Container(
+                    width: double.infinity,
+                    // margin: const EdgeInsets.symmetric(
+                    //   vertical: 10,
+                    // ),
+                    height: 60,
+                    color: Colors.primaries[(index / 3).ceil()],
+                  ),
+                  if (index < 49) const Divider()
+                ],
+              );
             },
-            child: const Center(
-                child: Text(
-              "Actus.",
-              style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
-            )),
-          )),
-          Container(
-              child: const Center(
-                  child: Text(
-            "Appels.",
-            style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
-          ))),
+          ),
+          ListView.separated(
+            itemCount: 50,
+            itemBuilder: (context, index) {
+              return Container(
+                width: double.infinity,
+                // margin: const EdgeInsets.symmetric(
+                //   vertical: 10,
+                // ),
+                height: 60,
+                color: Colors.primaries[(index / 3).ceil()],
+              );
+            },
+            separatorBuilder: (context, index) {
+              return Container(
+                width: double.infinity,
+                // margin: const EdgeInsets.symmetric(
+                //   vertical: 10,
+                // ),
+                height: 10,
+                color: Colors.white,
+              );
+            },
+          ),
+          GridView(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: isMobile
+                  ? 2
+                  : isTablet
+                      ? 4
+                      : 6,
+              mainAxisSpacing: 10,
+              crossAxisSpacing: 10,
+            ),
+            children: List.generate(
+              16,
+              (index) => Container(
+                color: Colors.primaries[index],
+              ),
+            ),
+          )
         ],
       ),
     );
