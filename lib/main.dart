@@ -1,4 +1,5 @@
 import 'package:demo/form/form_in_flutter.dart';
+import 'package:demo/bmi/presentation/pages/bmi_calculator.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
         ),
         useMaterial3: true,
       ),
-      home: const FormInFlutter(),
+      home: const BmiCalculatorScreen(),
     );
   }
 }

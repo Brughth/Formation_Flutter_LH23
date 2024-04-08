@@ -1,3 +1,5 @@
+import 'package:demo/bmi/data/models/bmi_model.dart';
+import 'package:demo/bmi/presentation/pages/bmi_result_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -150,6 +152,7 @@ class _BmiCalculatorScreenState extends State<BmiCalculatorScreen> {
                     value: height,
                     min: 0,
                     max: 230,
+                    activeColor: Colors.pink,
                     onChanged: (newValue) {
                       setState(() {
                         height = newValue;
@@ -159,7 +162,7 @@ class _BmiCalculatorScreenState extends State<BmiCalculatorScreen> {
                 ],
               ),
             ),
-            Spacer(),
+            const Spacer(),
             Padding(
               padding: const EdgeInsets.symmetric(
                 horizontal: 20,
@@ -329,22 +332,45 @@ class _BmiCalculatorScreenState extends State<BmiCalculatorScreen> {
               ),
             ),
             Spacer(),
-            Container(
-              width: double.infinity,
-              decoration: BoxDecoration(
-                color: Colors.pink,
-              ),
-              child: Center(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 12,
-                    vertical: 20,
+            InkWell(
+              onTap: () {
+                var bmiModel = BmiModel(
+                  gender: gender,
+                  height: height,
+                  weight: weight.toDouble(),
+                  age: age,
+                );
+
+                var result = bmiModel.calculateBmiIndex();
+                print(result);
+
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return BmiResultScreen(
+                        bmiResult: result,
+                      );
+                    },
                   ),
-                  child: Text(
-                    "CALCULATE",
-                    style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                          color: Colors.white,
-                        ),
+                );
+              },
+              child: Container(
+                width: double.infinity,
+                decoration: const BoxDecoration(
+                  color: Colors.pink,
+                ),
+                child: Center(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 12,
+                      vertical: 20,
+                    ),
+                    child: Text(
+                      "CALCULATE",
+                      style: Theme.of(context).textTheme.titleLarge?.copyWith(
+                            color: Colors.white,
+                          ),
+                    ),
                   ),
                 ),
               ),

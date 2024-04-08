@@ -22,7 +22,7 @@ class _WhatsAppHomeScreenState extends State<WhatsAppHomeScreen>
     double width = MediaQuery.of(context).size.width;
     bool isMobile = width < 800;
     bool isTablet = width >= 800 && width < 1100;
-    bool isDesktop = width >= 1100;
+    // bool isDesktop = width >= 1100;
     return Scaffold(
       appBar: AppBar(
         title: const Text(
